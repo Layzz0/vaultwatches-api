@@ -3,7 +3,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 # 🔴 BURAYA KENDİ SUPABASE LİNKİNİ YAPIŞTIR
 # Önemli: Kopyaladığın linkteki [YOUR-PASSWORD] kısmını silip kendi şifreni yaz.
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:[YOUR-PASSWORD]@db.oiwvoqkuyvgmcpqnxwvh.supabase.co:5432/postgres"
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:[1e2e3e4e5eK]@db.oiwvoqkuyvgmcpqnxwvh.supabase.co:5432/postgres"
 
 # SQLite'a özel ayarları kaldırdık, saf PostgreSQL motorunu kuruyoruz
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
