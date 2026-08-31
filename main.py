@@ -71,3 +71,20 @@ def delete_watch(watch_id: int, db: Session = Depends(get_db)):
     db.delete(watch)
     db.commit()
     return {"message": "Saat başarıyla silindi"}
+@app.put("/watches/{watch_id}")
+def update_watch(watch_id: int, watch_data: dict, db: Session = Depends(get_db)):
+    watch = db.query(models.Watch).filter(models.Watch.id == watch_id).first()
+    if not watch:
+        raise HTTPException(status_code=404, detail="Saat bulunamadı")
+    
+    # Gelen verilerle saati güncelle
+    if "brand" in watch_data: watch.brand = watch_data["brand"]
+    if "model" in watch_data: watch.model = watch_data["model"]
+    if "reference_number" in watch_data: watch.reference_number = watch_data["reference_number"]
+    if "price" in watch_data: watch.price = watch_data["price"]
+    if "notes" in watch_data: watch.notes = watch_data["notes"]
+    if "image_url" in watch_data: watch.image_url = watch_data["image_url"]
+    
+    db.commit()
+    db.refresh(watch)
+    return watch
